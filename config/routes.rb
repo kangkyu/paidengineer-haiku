@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :haikus, constraints: {format: :json} do
     resources :lines, only: [:index, :create, :update, :show, :destroy], constraints: {format: :json}
   end
-  resources :users
-  resources :api_keys
+  resources :users, only: [:create, :destroy]
+  resources :api_keys, only: :create
 end
