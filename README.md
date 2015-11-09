@@ -28,7 +28,7 @@ curl http://localhost:3000/ping
 ###Making requests
 Any endpoint other than /ping requires a valid token. Make a token in a console like this:
 ```
-> ApiToken.create!
+> ApiKey.create!
 ```
 
 See http://apidock.com/rails/ActionController/HttpAuthentication/Token/ControllerMethods/authenticate_or_request_with_http_token for an example of how to set a token in your Authorization header.
