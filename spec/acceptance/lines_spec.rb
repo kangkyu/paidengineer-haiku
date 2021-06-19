@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'LinesController', type: :request do
-  let(:haiku) { FactoryGirl.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
+  let(:haiku) { FactoryBot.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
   let(:line) { haiku.lines.first }
-  let (:api_key) { FactoryGirl.create(:api_key) }
+  let (:api_key) { FactoryBot.create(:api_key) }
   let(:body) {JSON.parse(response_body)}
 
   before do
@@ -14,8 +14,8 @@ resource 'LinesController', type: :request do
   end
 
   get '/lines' do
-   let!(:line2) { FactoryGirl.create(:line, haiku_id: haiku.id, content: "Line 2") }
-   let!(:line3) { FactoryGirl.create(:line, haiku_id: haiku.id, content: "Line 3") }
+   let!(:line2) { FactoryBot.create(:line, haiku_id: haiku.id, content: "Line 2") }
+   let!(:line3) { FactoryBot.create(:line, haiku_id: haiku.id, content: "Line 3") }
 
     example "GET /lines, with proper authorization headers (success)" do
       client.get "/haikus/#{haiku.id}/lines", nil, headers

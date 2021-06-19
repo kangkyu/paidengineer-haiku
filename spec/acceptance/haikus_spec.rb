@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'HaikusController', type: :request do
-  let(:api_key) { FactoryGirl.create(:api_key) }
-  let!(:haikus_list) {FactoryGirl.create_list(:haiku, 5, {"lines_attributes": {"0": {"content": "Haiku line"}}})}
+  let(:api_key) { FactoryBot.create(:api_key) }
+  let!(:haikus_list) {FactoryBot.create_list(:haiku, 5, {"lines_attributes": {"0": {"content": "Haiku line"}}})}
   let(:body) { JSON.parse(response_body) }
     
   before do
@@ -21,7 +21,7 @@ resource 'HaikusController', type: :request do
   end
 
   get '/haikus/:id' do
-    let(:haiku) { FactoryGirl.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
+    let(:haiku) { FactoryBot.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
     example 'GET haikus/:id with a valid token (success)' do
       client.get "haikus/#{haiku.id}", nil, headers
       expect(status).to eq(200)
@@ -48,7 +48,7 @@ resource 'HaikusController', type: :request do
   end
 
   patch '/haikus' do
-    let(:haiku) { FactoryGirl.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
+    let(:haiku) { FactoryBot.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
     example "PATCH haikus with a valid token and valid params (success)" do
       client.patch "/haikus/#{haiku.id}", {content: "updated haiku line"}.to_json, headers
       expect(status).to eq(200)
@@ -58,7 +58,7 @@ resource 'HaikusController', type: :request do
   end
 
   delete '/haikus/:id' do
-    let!(:haiku) { FactoryGirl.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
+    let!(:haiku) { FactoryBot.create(:haiku, {"lines_attributes": {"0": {"content": "haiku line"}}} ) }
     example "DELETE /haikus with a valid token and valid id (success)" do
       expect{ client.delete "/haikus/#{haiku.id}", nil, headers }.to change{Haiku.count}.by(-1)
     end

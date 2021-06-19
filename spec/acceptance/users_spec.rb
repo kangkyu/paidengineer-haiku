@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'UsersController', type: :request do
-  let(:api_key) { FactoryGirl.create(:api_key) }
-  let!(:user) { FactoryGirl.create(:user, email: 'email@sample.com', password: 'password') }
+  let(:api_key) { FactoryBot.create(:api_key) }
+  let!(:user) { FactoryBot.create(:user, email: 'email@sample.com', password: 'password') }
   let(:body) {JSON.parse(response_body)}
 
   before do

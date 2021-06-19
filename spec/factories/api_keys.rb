@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :api_key do
-    access_token "RandomString"
+    access_token { "RandomString" }
   end
 end

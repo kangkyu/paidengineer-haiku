@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :line do
-    haiku_id 1
-    content "MyString"
+    haiku_id { 1 }
+    content { "MyString" }
   end
 
 end
