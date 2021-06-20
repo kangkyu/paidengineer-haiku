@@ -16,8 +16,8 @@ resource 'ApiKeysController', type: :request do
     let!(:params) {{email: user.email, password: user.password}}
     example 'POST /api_keys with valid params and valid authorization headers (success)' do
       client.post '/api_keys', params, nil
-      expect(body['data']['attributes']['access_token']).to_not be_nil
-      expect(body['data']['attributes']['user_id']).to eq(1)
+      expect(body['data']['attributes']['access-token']).to_not be_nil
+      expect(body['data']['attributes']['user-id']).to eq(1)
     end
   end
 end
